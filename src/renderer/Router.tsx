@@ -1,26 +1,27 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom';
+import ErrorPage from './pages/ErrorPage';
+import BaseLayout from './layouts/BaseLayout';
+import Home from './pages/Home';
+import Login from './pages/Login';
 
-import Home from './layouts/home';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Home />,
-    errorElement: <Error />,
+    element: <BaseLayout />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: '',
-        element: <Navigate replace to="/invitation-status/organization" />,
+        element: <Home />,
       },
-      ...AUTH_AFTER_LOGIN,
-      ...ORGANIZATION_ROUTES,
-      ...HOME_PAGE_ROUTES,
-      ...SENIOR_APP_ROUTES,
-      ...INVITATION_STATUS_ROUTES,
-      ...KIOSK_MARU_ROUTES,
+      {
+        path: '/login',
+        element: <Login />,
+        errorElement: <ErrorPage />,
+      },
     ],
   },
-  ...AUTH_BEFORE_LOGIN,
 ]);
 
 export default router;
