@@ -1,12 +1,9 @@
 import React from 'react';
+import { RouterProvider } from 'react-router-dom';
+import Router from './Router';
 
 const App: React.FC = () => {
-  return (
-    <div style={{ padding: '20px', textAlign: 'center' }}>
-      <h1>💖 Hello from React!</h1>
-      <p>Welcome to your Electron + React application.</p>
-    </div>
-  );
+  return <RouterProvider router={Router} />;
 };
 
 export default App;
