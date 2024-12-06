@@ -1,6 +1,6 @@
-import { ReactNode, useEffect, useState } from "react";
-import { Navigate, useLocation } from "react-router-dom";
-import { Members } from "../domains/Members";
+import { ReactNode, useMemo } from 'react';
+import { Navigate, useLocation } from 'react-router-dom';
+import { Members } from '../domains/Members';
 
 interface Props {
   children: ReactNode;
@@ -16,68 +16,25 @@ const Auth = ({
   loginRequired = false,
 }: Props) => {
   const { pathname } = useLocation();
-  // const { accessToken } = getTokens();
-  const accessToken :string= null;
-
-  const [requiredStaticPage, setRequiredStaticPage] = useState<string>();
-
-  useEffect(() => {
-    if (isLoading) {
-      return;
-    }
+  const accessToken: string | null = null; // 로그인 정보 없음 가정
+  const requiredStaticPage = useMemo(() => {
+    if (isLoading) return null;
 
     if ((!member || !accessToken) && loginRequired) {
-      console.log('hit auth')
-      console.log(member)
-      console.log(accessToken)
-      setRequiredStaticPage("login");
-    } else if (member) {
-      setRequiredStaticPage(member.grade);
+      return 'login';
     }
+
+    if (member) {
+      return member.grade;
+    }
+
+    return null;
   }, [isLoading, member, accessToken, pathname]);
-  
-console.log('hit auth')
-console.log(requiredStaticPage)
-  if (requiredStaticPage === "login") {
-    console.log('go login')
-    return (
-      <Navigate
-        // replace={true}
-        // state={{ isAutoLogout: window.history.state?.isAutoLogout || false }}
-        to="/login"
-      />
-    );
-  }else {
-    return  <>{children}</>;
+
+  if (requiredStaticPage === 'login') {
+    return <Navigate to="/login" replace />;
   }
-  // switch (requiredStaticPage) {
-  //   case "login":
-  //     return (
-  //       <Navigate
-  //         replace={true}
-  //         state={{ isAutoLogout: window.history.state?.isAutoLogout || false }}
-  //         to="/login"
-  //       />
-  //     );
-  //   case Members.GRADE.NEW:
-  //     return (
-  //       <Navigate
-  //         replace={true}
-  //         state={{ isAutoLogout: window.history.state?.isAutoLogout || false }}
-  //         to="/new"
-  //       />
-  //     );
-  //   case Members.GRADE.BASIC:
-  //     return <>{children}</>;
-  //   default:
-  //     return (
-  //       <Navigate
-  //         replace={true}
-  //         state={{ isAutoLogout: window.history.state?.isAutoLogout || false }}
-  //         to="/login"
-  //       />
-  //     );
-  // }
+  return <>{children}</>;
 };
 
 export default Auth;
