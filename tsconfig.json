@@ -9,6 +9,9 @@
     "noImplicitAny": true,
     "sourceMap": true,
     "baseUrl": ".",
+    "paths": {
+      "@/*": ["./*"]
+    },
     "outDir": "dist",
     "moduleResolution": "node",
     "resolveJsonModule": true
