@@ -1,11 +1,18 @@
-import React from 'react';
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import ErrorPage from "./pages/ErrorPage";
+import Login from "./pages/Login";
+import BaseLayout from "./layouts/BaseLayout";
 
 const App: React.FC = () => {
   return (
-    <div style={{ padding: '20px', textAlign: 'center' }}>
-      <h1>💖 Hello from React!</h1>
-      <p>Welcome to your Electron + React application.</p>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<BaseLayout />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="*" element={<ErrorPage />} />
+      </Routes>
+    </Router>
   );
 };
 
