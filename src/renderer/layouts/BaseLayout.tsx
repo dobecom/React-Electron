@@ -7,44 +7,42 @@ import { Members } from '../domains/Members';
 
 const BaseLayout = () => {
   const { pathname } = useLocation();
-//   const { accessToken } = getTokens();
-//   const { isLoading, myInfo, refetch } = useGetMyInfo();
-    const member: Members = {
-        id: 'temp',
-        verifyKey: '',
-        verifyCode: '',
-        page: 0,
-        passwordInit: false,
-        identifier: '',
-        password: '',
-        name: '',
-        nickname: '',
-        mobile: '',
-        grade: Members.GRADE.BASIC,
-        signFail: 0,
-        status: 0,
-        passwordExpiredAt: '',
-        createdBy: '',
-        updatedBy: '',
-        createdAt: '',
-        updatedAt: ''
-    };
+  //   const { accessToken } = getTokens();
+  //   const { isLoading, myInfo, refetch } = useGetMyInfo();
+  const member: Members = {
+    id: 'temp',
+    verifyKey: '',
+    verifyCode: '',
+    page: 0,
+    passwordInit: false,
+    identifier: '',
+    password: '',
+    name: '',
+    nickname: '',
+    mobile: '',
+    grade: Members.GRADE.BASIC,
+    signFail: 0,
+    status: 0,
+    passwordExpiredAt: '',
+    createdBy: '',
+    updatedBy: '',
+    createdAt: '',
+    updatedAt: '',
+  };
 
   useEffect(() => {
     // if (accessToken) {
     //   refetch();
     // }
-  }, [pathname, 
-    
+  }, [
+    pathname,
+
     // refetch
-]);
-console.log('hit base')
+  ]);
   return (
-    <Auth member={null} isLoading={false} loginRequired={true}>
-      <div className="size-full min-w-3xl bg-gray-25">
-        <div className="relative mt-20">
-            temp
-        </div>
+    <Auth member={undefined} isLoading={false} loginRequired={true}>
+      <div className='size-full min-w-3xl bg-gray-25'>
+        <div className='relative mt-20'>temp</div>
       </div>
       <ScrollRestoration />
     </Auth>

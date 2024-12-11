@@ -4,7 +4,6 @@ import BaseLayout from './layouts/BaseLayout';
 import Home from './pages/Home';
 import Login from './pages/Login';
 
-
 const router = createBrowserRouter([
   {
     path: '/',
@@ -12,7 +11,7 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
-        path: '',
+        path: '/home',
         element: <Home />,
       },
       {
